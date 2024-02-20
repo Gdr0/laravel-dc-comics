@@ -6,6 +6,15 @@
 @section('content')
    <h1>
     [ {{$comic-> id}} ] EDIT COMIC:</h1>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul style="list-style-type: none;">
+            @foreach($errors->all() as $error)
+            <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
    <div class="container d-flex justify-content-center">
        <form style="width: 50%;"
         action="{{route('users.update' , $comic-> id)}}"

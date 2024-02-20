@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ComicFormRequest;
 use Illuminate\Http\Request;
 
 use App\Models\Comic;
@@ -80,11 +81,21 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ComicFormRequest $request, $id)
     {
         
+        
         $comic = Comic :: find($id);
+        // $data = $request-> validate([
+        //     'title' => 'required |string|min:3|max:150',
+        //     'description' => 'required|string|min:10|max:500',
+        //     'author' => 'required|string|min:3|max:250',
+        //     'price' => 'required|numeric'
+        // ]);
+
+
         $data = $request -> all();
+
         $comic ->title = $data ['title'];
         $comic -> description = $data ['description'];
         $comic -> author = $data ['author'];
